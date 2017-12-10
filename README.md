@@ -2,6 +2,8 @@
 
 Simply shows the scope of the current enclosing brackets.
 
+<img src="https://raw.githubusercontent.com/Gruntfuggly/scoper/master/screenshot.png">
+
 ## Installing
 
 You can install the latest version of the extension via the Visual Studio Marketplace [here](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.scoper).
