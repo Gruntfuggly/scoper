@@ -1,0 +1,52 @@
+{
+	"name": "scoper",
+	"displayName": "Scoper",
+	"description": "Highlight the current bracket scope",
+	"version": "0.0.1",
+	"icon": "resources/scoper.png",
+	"publisher": "Gruntfuggly",
+	"engines": {
+		"vscode": "^1.5.0"
+	},
+	"repository": "https://github.com/Gruntfuggly/scoper",
+	"categories": [
+		"Other"
+	],
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "scoper configuration",
+			"properties": {
+				"scoper.highlightColor": {
+					"type": "string",
+					"description": "Color for highlighting current scope",
+					"default": "#003300"
+				},
+				"scoper.overviewColor": {
+					"type": "string",
+					"description": "Color for showing current scope in the overview",
+					"default": "#0000aa"
+				},
+				"scoper.parentheses": {
+					"type": "array",
+					"description": "Files to highlight parenthesis scope (...)",
+					"default": []
+				},
+				"scoper.braces": {
+					"type": "array",
+					"description": "Files to highlight braces scope {...}",
+					"default": []
+				},
+				"scoper.squareBrackets": {
+					"type": "array",
+					"description": "Files to highlight square brackets scope [...]",
+					"default": []
+				}
+			}
+		}
+	},
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension"
+}
