@@ -3,7 +3,7 @@
 	"displayName": "Scoper",
 	"description": "Highlight the current bracket scope",
 	"version": "0.0.1",
-	"icon": "resources/scoper.png",
+	"icon": "scoper.png",
 	"publisher": "Gruntfuggly",
 	"engines": {
 		"vscode": "^1.5.0"
@@ -28,19 +28,19 @@
 					"default": "#0000aa"
 				},
 				"scoper.parentheses": {
-					"type": "array",
-					"description": "Files to highlight parenthesis scope (...)",
-					"default": []
+					"type": "boolean",
+					"description": "Highlight parenthesis scope (...)",
+					"default": true
 				},
 				"scoper.braces": {
-					"type": "array",
-					"description": "Files to highlight braces scope {...}",
-					"default": []
+					"type": "boolean",
+					"description": "Highlight braces scope {...}",
+					"default": true
 				},
 				"scoper.squareBrackets": {
-					"type": "array",
-					"description": "Files to highlight square brackets scope [...]",
-					"default": []
+					"type": "boolean",
+					"description": "Highlight square brackets scope [...]",
+					"default": true
 				}
 			}
 		}

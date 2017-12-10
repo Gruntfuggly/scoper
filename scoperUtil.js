@@ -1,50 +1,87 @@
 Object.defineProperty( exports, "__esModule", { value: true } );
 
 var vscode = require( 'vscode' );
-var bracketUtil;
+var scoperUtil;
 
-( function( bracketUtil )
+( function( scoperUtil )
 {
-    function active( type )
+    var openingBrackets = "";
+    var closingBrackets = "";
+
+    function updateConfig()
     {
-        var files = vscode.workspace.getConfiguration( 'scoper' )[ type ];
-        return files === undefined || files.length === 0 || files.indexOf( vscode.window.activeTextEditor.document.languageId ) > -1;
+        if( vscode.window.activeTextEditor )
+        {
+            openingBrackets = "";
+            closingBrackets = "";
+
+            if( isActive( "parentheses" ) )
+            {
+                openingBrackets += "(";
+                closingBrackets += ")";
+            }
+            if( isActive( "braces" ) )
+            {
+                openingBrackets += "{";
+                closingBrackets += "}";
+            }
+            if( isActive( "squareBrackets" ) )
+            {
+                openingBrackets += "[";
+                closingBrackets += "]";
+            }
+        }
+    }
+
+    scoperUtil.updateConfig = updateConfig;
+
+    function isActive( type )
+    {
+        var language = vscode.window.activeTextEditor.document.languageId;
+        var config = vscode.workspace.getConfiguration().get( '[' + language + ']' );
+        if( config )
+        {
+            var languageSetting = config[ 'scoper.' + type ];
+            if( languageSetting !== undefined )
+            {
+                return languageSetting;
+            }
+        }
+        var globalSetting = vscode.workspace.getConfiguration( 'scoper' )[ type ];
+        if( globalSetting )
+        {
+            return globalSetting;
+        }
+        return true;
     }
 
     function isMatch( open, close )
     {
         switch( open )
         {
-            case '(':
-                return active( "parentheses" ) && close === ')';
-            case '{':
-                return active( "braces" ) && close === '}';
-            case '[':
-                return active( "squareBrackets" ) && close === ']';
+            case '(': return close === ')';
+            case '{': return close === '}';
+            case '[': return close === ']';
         }
         return false;
     }
 
-    bracketUtil.isMatch = isMatch;
+    scoperUtil.isMatch = isMatch;
 
     function isOpenBracket( char )
     {
-        return char === '('
-            || char === '['
-            || char === '{'
-            ;
+        return openingBrackets.indexOf( char ) > -1;
     }
 
-    bracketUtil.isOpenBracket = isOpenBracket;
+    scoperUtil.isOpenBracket = isOpenBracket;
 
     function isCloseBracket( char )
     {
-        return char === ')'
-            || char === ']'
-            || char === '}'
-            ;
+        return closingBrackets.indexOf( char ) > -1;
     }
 
-    bracketUtil.isCloseBracket = isCloseBracket;
+    scoperUtil.isCloseBracket = isCloseBracket;
 
-} )( bracketUtil = exports.bracketUtil || ( exports.bracketUtil = {} ) );
+    updateConfig();
+
+} )( scoperUtil = exports.scoperUtil || ( exports.scoperUtil = {} ) );

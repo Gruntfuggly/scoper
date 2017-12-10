@@ -23,9 +23,15 @@ var Scoper = ( function()
     {
     }
 
-    Scoper.prototype.updateStyling = function( config )
+    Scoper.prototype.updateConfig = function()
     {
+        if( vscode.window.activeTextEditor )
+        {
+            vscode.window.activeTextEditor.setDecorations( scoperDecorationType, [] );
+        }
+
         scoperDecorationType = setStyle();
+        util.scoperUtil.updateConfig();
     };
 
     class SearchResult
@@ -46,7 +52,7 @@ var Scoper = ( function()
         for( let i = index; i >= 0; i-- )
         {
             let char = text.charAt( i );
-            if( util.bracketUtil.isOpenBracket( char ) )
+            if( util.scoperUtil.isOpenBracket( char ) )
             {
                 if( bracketStack.length === 0 )
                 {
@@ -57,13 +63,13 @@ var Scoper = ( function()
                 else
                 {
                     let top = bracketStack.pop();
-                    if( !util.bracketUtil.isMatch( char, top ) )
+                    if( !util.scoperUtil.isMatch( char, top ) )
                     {
                         throw 'Unmatched bracket pair';
                     }
                 }
             }
-            else if( util.bracketUtil.isCloseBracket( char ) )
+            else if( util.scoperUtil.isCloseBracket( char ) )
             {
                 bracketStack.push( char );
             }
@@ -80,7 +86,7 @@ var Scoper = ( function()
         for( let i = index; i < text.length; i++ )
         {
             let char = text.charAt( i );
-            if( util.bracketUtil.isCloseBracket( char ) )
+            if( util.scoperUtil.isCloseBracket( char ) )
             {
                 if( bracketStack.length === 0 )
                 {
@@ -91,13 +97,13 @@ var Scoper = ( function()
                 else
                 {
                     let top = bracketStack.pop();
-                    if( !util.bracketUtil.isMatch( top, char ) )
+                    if( !util.scoperUtil.isMatch( top, char ) )
                     {
                         throw 'Unmatched bracket pair';
                     }
                 }
             }
-            else if( util.bracketUtil.isOpenBracket( char ) )
+            else if( util.scoperUtil.isOpenBracket( char ) )
             {
                 bracketStack.push( char );
             }
@@ -123,7 +129,7 @@ var Scoper = ( function()
             const backwardResult = findBackward( text, offset - 1 );
             const forwardResult = findForward( text, offset );
 
-            if( !util.bracketUtil.isMatch( backwardResult.bracket, forwardResult.bracket ) )
+            if( !util.scoperUtil.isMatch( backwardResult.bracket, forwardResult.bracket ) )
             {
                 editor.setDecorations( scoperDecorationType, [] );
                 return;
@@ -147,6 +153,7 @@ var Scoper = ( function()
     {
         this.decorator.dispose();
     };
+
 
     return Scoper;
 }() );

@@ -20,24 +20,18 @@ The source code is available on GitHub [here](https://github.com/Gruntfuggly/sco
 
 The color of the highlight.
 
-`scoper.parentheses`
+`scoper.overviewColor`
 
-List of file types that should have parenthesis scope highlighted.
+The color of the highlight in the overview ruler.
+
+`scoper.parentheses`
 
 `scoper.braces`
 
-List of file types that should have brace scope highlighted.
-
 `scoper.squareBrackets`
 
-List of file types that should have square bracket scope highlighted.
-
-`scoper.chevrons`
-
-List of file types that should have chevron (angle bracket) scope highlighted.
-
-_Note: Leave the arrays empty to apply to all file types_
+These can be set to false to disable highlighting for specific types of brackets. These can also be set as language specific settings (ignore the 'Unknown Identifier' warning).
 
 ### Credits
 
-This extension is a massive rip-off of Chunsen Wang's [Bracket Select](https://marketplace.visualstudio.com/items?itemName=chunsen.bracket-select) extension.
+This extension is a massive rip-off of Chunsen Wang's [Bracket Select](https://marketplace.visualstudio.com/items?itemName=chunsen.bracket-select) extension. Please accept my apologies and thanks in equal measure...

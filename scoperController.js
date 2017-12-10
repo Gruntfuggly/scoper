@@ -8,7 +8,7 @@ var ScoperController = ( function()
 
         var subscriptions = [];
         vscode.window.onDidChangeTextEditorSelection( this._onEvent, this, subscriptions );
-        vscode.window.onDidChangeActiveTextEditor( this._onEvent, this, subscriptions );
+        vscode.window.onDidChangeActiveTextEditor( this._onChangeEditor, this, subscriptions );
         vscode.workspace.onDidChangeConfiguration( this._onUpdateSettings, this, subscriptions );
 
         this._onEvent();
@@ -23,8 +23,13 @@ var ScoperController = ( function()
 
     ScoperController.prototype._onUpdateSettings = function()
     {
-        var config = vscode.workspace.getConfiguration( 'scoper' );
-        this._scoper.updateStyling( config );
+        this._scoper.updateConfig();
+    };
+
+    ScoperController.prototype._onChangeEditor = function()
+    {
+        this._scoper.updateConfig();
+        this._scoper.update();
     };
 
     ScoperController.prototype._onEvent = function()
