@@ -115,7 +115,7 @@ var Scoper = ( function()
     {
         const editor = vscode.window.activeTextEditor;
 
-        if( !editor.selection.isEmpty )
+        if( !editor || !editor.selection.isEmpty )
         {
             editor.setDecorations( scoperDecorationType, [] );
             return;
