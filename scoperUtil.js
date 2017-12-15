@@ -48,7 +48,7 @@ var scoperUtil;
             }
         }
         var globalSetting = vscode.workspace.getConfiguration( 'scoper' )[ type ];
-        if( globalSetting )
+        if( globalSetting !== undefined )
         {
             return globalSetting;
         }
