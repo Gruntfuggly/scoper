@@ -16,6 +16,8 @@ function setStyle()
 }
 
 var scoperDecorationType = setStyle();
+var listParts = [];
+var listStart;
 
 var Scoper = ( function()
 {
@@ -146,6 +148,14 @@ var Scoper = ( function()
             var decorations = [];
             decorations.push( decoration );
             editor.setDecorations( scoperDecorationType, decorations );
+
+            listStart = start;
+            var list = text.substring( start, end );
+            listParts = list.split( /\s*,\s*/ );
+            parts.map( function( p )
+            {
+                console.log( p );
+            } );
         }
         catch( error )
         {
@@ -158,6 +168,27 @@ var Scoper = ( function()
         this.decorator.dispose();
     };
 
+    Scoper.prototype.rotateLeft = function()
+    {
+        // const editor = vscode.window.activeTextEditor;
+        // const text = editor.document.getText();
+
+        // if( listParts && listParts.length > 0 )
+        // {
+        //     for( var i = 0; i < listParts.length(); ++i )
+        //     {
+        //         const offset = editor.document.offsetAt( editor.selection.active );
+        //         if( offset > listStart && offset < listStart + listParts[ i ].length + i )
+        //         {
+        //             console.log( listParts[ i ] );
+        //         }
+        //     }
+        // }
+    };
+
+    Scoper.prototype.rotateRight = function()
+    {
+    };
 
     return Scoper;
 }() );
