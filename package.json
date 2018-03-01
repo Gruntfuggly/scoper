@@ -2,7 +2,7 @@
 	"name": "scoper",
 	"displayName": "Scoper",
 	"description": "Highlight the current bracket scope",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"icon": "scoper.png",
 	"publisher": "Gruntfuggly",
 	"engines": {

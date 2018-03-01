@@ -1,3 +1,6 @@
+# v0.0.5 - 2018-03-01
+- Fix clearing of old scope when changing file
+
 # v0.0.4 - 2017-12-15
 - Fix settings
 

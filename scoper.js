@@ -29,6 +29,7 @@ var Scoper = ( function()
         {
             vscode.window.activeTextEditor.setDecorations( scoperDecorationType, [] );
         }
+        scoperDecorationType.dispose();
 
         scoperDecorationType = setStyle();
         util.scoperUtil.updateConfig();
