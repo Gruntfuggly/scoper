@@ -1,3 +1,7 @@
+# v0.0.6 - 2018-07-26
+- Only update when configuration change affects scoper
+- Only update when current text editor changes
+
 # v0.0.5 - 2018-03-01
 - Fix clearing of old scope when changing file
 

@@ -14,6 +14,9 @@ var ScoperController = ( function()
         this._onEvent();
 
         this._disposable = vscode.Disposable.from.apply( vscode.Disposable, subscriptions );
+
+        this._scoper.updateConfig();
+        this._scoper.update();
     }
 
     ScoperController.prototype.dispose = function()
@@ -21,9 +24,12 @@ var ScoperController = ( function()
         this._disposable.dispose();
     };
 
-    ScoperController.prototype._onUpdateSettings = function()
+    ScoperController.prototype._onUpdateSettings = function( configuration )
     {
-        this._scoper.updateConfig();
+        if( configuration.affectsConfiguration( 'scoper' ) )
+        {
+            this._scoper.updateConfig();
+        }
     };
 
     ScoperController.prototype._onChangeEditor = function()
@@ -32,9 +38,12 @@ var ScoperController = ( function()
         this._scoper.update();
     };
 
-    ScoperController.prototype._onEvent = function()
+    ScoperController.prototype._onEvent = function( e )
     {
-        this._scoper.update();
+        if( e && e.textEditor === vscode.window.activeTextEditor )
+        {
+            this._scoper.update();
+        }
     };
 
     return ScoperController;
