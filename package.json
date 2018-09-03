@@ -1,52 +1,52 @@
 {
-	"name": "scoper",
-	"displayName": "Scoper",
-	"description": "Highlight the current bracket scope",
-	"version": "0.0.6",
-	"icon": "scoper.png",
-	"publisher": "Gruntfuggly",
-	"engines": {
-		"vscode": "^1.5.0"
-	},
-	"repository": "https://github.com/Gruntfuggly/scoper",
-	"categories": [
-		"Other"
-	],
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "scoper configuration",
-			"properties": {
-				"scoper.highlightColor": {
-					"type": "string",
-					"description": "Color for highlighting current scope",
-					"default": "#003300"
-				},
-				"scoper.overviewColor": {
-					"type": "string",
-					"description": "Color for showing current scope in the overview",
-					"default": "#0000aa"
-				},
-				"scoper.parentheses": {
-					"type": "boolean",
-					"description": "Highlight parenthesis scope (...)",
-					"default": true
-				},
-				"scoper.braces": {
-					"type": "boolean",
-					"description": "Highlight braces scope {...}",
-					"default": true
-				},
-				"scoper.squareBrackets": {
-					"type": "boolean",
-					"description": "Highlight square brackets scope [...]",
-					"default": true
-				}
-			}
-		}
-	},
-	"activationEvents": [
-		"*"
-	],
-	"main": "./extension"
+    "name": "scoper",
+    "displayName": "Scoper",
+    "description": "Highlight the current bracket scope",
+    "version": "0.0.7",
+    "icon": "scoper.png",
+    "publisher": "Gruntfuggly",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "repository": "https://github.com/Gruntfuggly/scoper",
+    "categories": [
+        "Other"
+    ],
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "scoper configuration",
+            "properties": {
+                "scoper.highlightColor": {
+                    "type": "string",
+                    "description": "Color for highlighting current scope",
+                    "default": "#003300"
+                },
+                "scoper.overviewColor": {
+                    "type": "string",
+                    "description": "Color for showing current scope in the overview",
+                    "default": "#0000aa"
+                },
+                "scoper.parentheses": {
+                    "type": "array",
+                    "description": "Languages in which to highlight parenthesis scope (...). Defaults to all.",
+                    "default": []
+                },
+                "scoper.braces": {
+                    "type": "array",
+                    "description": "Languages in which to highlight braces scope {...}. Defaults to all.",
+                    "default": []
+                },
+                "scoper.squareBrackets": {
+                    "type": "array",
+                    "description": "Languages in which to highlight square brackets scope [...]. Defaults to all.",
+                    "default": []
+                }
+            }
+        }
+    },
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension"
 }

@@ -1,3 +1,6 @@
+# v0.0.7 - 2018-09093
+- Fix configuration to remove logged errors
+
 # v0.0.6 - 2018-07-26
 - Only update when configuration change affects scoper
 - Only update when current text editor changes
