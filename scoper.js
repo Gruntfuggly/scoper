@@ -1,7 +1,7 @@
 var vscode = require( 'vscode' );
 const util = require( "./scoperUtil" );
 
-function setStyle()
+function setRangeStyle()
 {
     return vscode.window.createTextEditorDecorationType( {
         overviewRulerColor: vscode.workspace.getConfiguration( 'scoper' ).overviewColor,
@@ -15,7 +15,20 @@ function setStyle()
     } );
 }
 
-var scoperDecorationType = setStyle();
+function setEndStyle()
+{
+    return vscode.window.createTextEditorDecorationType( {
+        light: {
+            backgroundColor: vscode.workspace.getConfiguration( 'scoper' ).endColor
+        },
+        dark: {
+            backgroundColor: vscode.workspace.getConfiguration( 'scoper' ).endColor
+        }
+    } );
+}
+
+var scoperRangeDecorationType = setRangeStyle();
+var scoperEndDecorationType = setEndStyle();
 
 var Scoper = ( function()
 {
@@ -27,11 +40,14 @@ var Scoper = ( function()
     {
         if( vscode.window.activeTextEditor )
         {
-            vscode.window.activeTextEditor.setDecorations( scoperDecorationType, [] );
+            vscode.window.activeTextEditor.setDecorations( scoperRangeDecorationType, [] );
+            vscode.window.activeTextEditor.setDecorations( scoperEndDecorationType, [] );
         }
-        scoperDecorationType.dispose();
+        scoperRangeDecorationType.dispose();
 
-        scoperDecorationType = setStyle();
+        scoperRangeDecorationType = setRangeStyle();
+        scoperEndDecorationType = setEndStyle();
+
         util.scoperUtil.updateConfig();
     };
 
@@ -122,7 +138,7 @@ var Scoper = ( function()
         }
         else if( !editor.selection.isEmpty )
         {
-            editor.setDecorations( scoperDecorationType, [] );
+            editor.setDecorations( scoperRangeDecorationType, [] );
             return;
         }
 
@@ -136,21 +152,28 @@ var Scoper = ( function()
 
             if( !util.scoperUtil.isMatch( backwardResult.bracket, forwardResult.bracket ) )
             {
-                editor.setDecorations( scoperDecorationType, [] );
+                editor.setDecorations( scoperRangeDecorationType, [] );
                 return;
             }
 
             let start = backwardResult.offset < text.length ? backwardResult.offset + 1 : backwardResult.offset;
             let end = forwardResult.offset;
 
-            const decoration = new vscode.Range( editor.document.positionAt( start ), editor.document.positionAt( end ) );
-            var decorations = [];
-            decorations.push( decoration );
-            editor.setDecorations( scoperDecorationType, decorations );
+            const start_decoration = new vscode.Range( editor.document.positionAt( start - 1 ), editor.document.positionAt( start ) );
+            const range_decoration = new vscode.Range( editor.document.positionAt( start ), editor.document.positionAt( end ) );
+            const end_decoration = new vscode.Range( editor.document.positionAt( end ), editor.document.positionAt( end + 1 ) );
+            var rangeDecorations = [];
+            rangeDecorations.push( range_decoration );
+            editor.setDecorations( scoperRangeDecorationType, rangeDecorations );
+            var endDecorations = [];
+            endDecorations.push( start_decoration );
+            endDecorations.push( end_decoration );
+            editor.setDecorations( scoperEndDecorationType, endDecorations );
         }
         catch( error )
         {
-            editor.setDecorations( scoperDecorationType, [] );
+            editor.setDecorations( scoperRangeDecorationType, [] );
+            editor.setDecorations( scoperEndDecorationType, [] );
         }
     };
 

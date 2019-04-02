@@ -1,4 +1,7 @@
-# v0.0.7 - 2018-09093
+# v0.0.8 - 2019-04-02
+- Add highlights to the characters at the end of the scope indication
+
+# v0.0.7 - 2018-09-03
 - Fix configuration to remove logged errors
 
 # v0.0.6 - 2018-07-26

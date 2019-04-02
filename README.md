@@ -4,9 +4,6 @@ Simply shows the scope of the current enclosing brackets.
 
 <img src="https://raw.githubusercontent.com/Gruntfuggly/scoper/master/screenshot.png">
 
-*Note: The latest version (0.0.7) updates the way that the configuration is read. If you were using custom configuration per language, you'll need to update your configuration as it now uses an array of languages for each setting, rather than language scope. This change is to remove the 'Unknown Identifier' errors that are logged to the error console. Sorry!*
-
-
 ## Installing
 
 You can install the latest version of the extension via the Visual Studio Marketplace [here](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.scoper).
@@ -27,9 +24,15 @@ The source code is available on GitHub [here](https://github.com/Gruntfuggly/sco
 
 The color of the highlight.
 
+`scoper.endColor`
+
+The background color for the characters at either end of the scope.
+
 `scoper.overviewColor`
 
 The color of the highlight in the overview ruler.
+
+*Note: If you want to disable the range highlight or the end marker highlights, just set the alpha channel to 0, e.g.* `scoper.endColor: "#00000000"`
 
 `scoper.parentheses`
 

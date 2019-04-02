@@ -2,7 +2,7 @@
     "name": "scoper",
     "displayName": "Scoper",
     "description": "Highlight the current bracket scope",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "icon": "scoper.png",
     "publisher": "Gruntfuggly",
     "engines": {
@@ -21,6 +21,11 @@
                     "type": "string",
                     "description": "Color for highlighting current scope",
                     "default": "#003300"
+                },
+                "scoper.endColor": {
+                    "type": "string",
+                    "description": "Color for highlighting the ends of the current scope",
+                    "default": "#ff000080"
                 },
                 "scoper.overviewColor": {
                     "type": "string",
@@ -48,5 +53,10 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./extension"
+    "main": "./extension",
+    "__metadata": {
+        "id": "1ca6e13c-2a8b-42fc-af5c-8e8db0bb9e58",
+        "publisherDisplayName": "Gruntfuggly",
+        "publisherId": "d4906d2e-f2ee-492d-9c7c-02b6160599ec"
+    }
 }
