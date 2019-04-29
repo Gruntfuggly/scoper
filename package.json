@@ -2,7 +2,7 @@
     "name": "scoper",
     "displayName": "Scoper",
     "description": "Highlight the current bracket scope",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "icon": "scoper.png",
     "publisher": "Gruntfuggly",
     "engines": {
@@ -15,7 +15,7 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "scoper configuration",
+            "title": "Scoper",
             "properties": {
                 "scoper.highlightColor": {
                     "type": "string",
@@ -33,19 +33,23 @@
                     "default": "#0000aa"
                 },
                 "scoper.parentheses": {
-                    "type": "array",
-                    "description": "Languages in which to highlight parenthesis scope (...). Defaults to all.",
-                    "default": []
+                    "type": "boolean",
+                    "description": "Show scope for parentheses.",
+                    "default": true
                 },
                 "scoper.braces": {
-                    "type": "array",
-                    "description": "Languages in which to highlight braces scope {...}. Defaults to all.",
-                    "default": []
+                    "type": "boolean",
+                    "description": "Show scope for braces.",
+                    "default": true
                 },
                 "scoper.squareBrackets": {
-                    "type": "array",
-                    "description": "Languages in which to highlight square brackets scope [...]. Defaults to all.",
-                    "default": []
+                    "type": "boolean",
+                    "description": "Show scope for square brackets.",
+                    "default": true
+                },
+                "scoper.languages": {
+                    "type": "object",
+                    "description": "Language specific enable/disable flags"
                 }
             }
         }

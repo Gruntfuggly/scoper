@@ -1,3 +1,6 @@
+# v0.0.9 - 2019-04-29
+- Make configuration more flexible (thanks to [KilliMXI](https://github.com/KillyMXI) for the suggestion).
+
 # v0.0.8 - 2019-04-02
 - Add highlights to the characters at the end of the scope indication
 

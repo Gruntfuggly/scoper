@@ -1,12 +1,13 @@
 # Scoper
 
-Simply shows the scope of the current enclosing brackets.
+Shows the scope of the current enclosing brackets (braces, parentheses or square brackets).
 
 <img src="https://raw.githubusercontent.com/Gruntfuggly/scoper/master/screenshot.png">
 
 ## Installing
 
-You can install the latest version of the extension via the Visual Studio Marketplace [here](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.scoper).
+You can install the latest version of the extension via the Visual Studio
+Marketplace [here](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.scoper).
 
 Alternatively, open Visual Studio code, press `Ctrl+P` or `Cmd+P` and type:
 
@@ -32,17 +33,42 @@ The background color for the characters at either end of the scope.
 
 The color of the highlight in the overview ruler.
 
-*Note: If you want to disable the range highlight or the end marker highlights, just set the alpha channel to 0, e.g.* `scoper.endColor: "#00000000"`
+*Note: If you want to disable the range highlight or the end marker highlights,
+just set the alpha channel to 0, e.g.* `scoper.endColor: "#00000000"`
 
 `scoper.parentheses`
 
+Show scope for parentheses, e.g. `(...)`
+
 `scoper.braces`
+
+Show scope for braces, e.g. `{...}`
 
 `scoper.squareBrackets`
 
-These are arrays of languages for which highlighting scope should be enabled. By default, the arrays are empty, which shows the scope for all languages. For example, to enable braces scope highlighting for just C++ and JavaScript files, set `scoper.braces` to `[ "cpp", "javascript" ]`.
+Show scope for square brackets, e.g. `[...]`
 
+`scoper.languages`
+
+Allows fine control per language. For example, the following will enable
+highlighting of braces, disable highlighting of parentheses and use the global
+setting for highlighting square brackets:
+
+
+```
+"scoper.languages": {
+    "javascript": {
+        "braces": true,
+        "parentheses:" false
+    }
+}
+
+```
+
+*For a list of supported languages, press* `F1` *and enter* `Change Language Mode`. *The language tokens are shown in brackets after each entry in the list. Press `Escape` to close the list without changing the language.*
 
 ### Credits
 
-This extension is a massive rip-off of Chunsen Wang's [Bracket Select](https://marketplace.visualstudio.com/items?itemName=chunsen.bracket-select) extension. Please accept my apologies and thanks in equal measure...
+This extension is a massive rip-off of Chunsen Wang's [Bracket
+Select](https://marketplace.visualstudio.com/items?itemName=chunsen.bracket-select)
+extension. Please accept my apologies and thanks in equal measure...

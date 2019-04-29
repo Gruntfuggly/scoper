@@ -38,8 +38,11 @@ var scoperUtil;
     function isActive( type )
     {
         var language = vscode.window.activeTextEditor.document.languageId;
-        var config = vscode.workspace.getConfiguration( 'scoper' ).get( type, [] );
-        return ( config.length === 0 || config.indexOf( language ) !== -1 );
+        var config = vscode.workspace.getConfiguration( 'scoper' );
+        var isActive = config.get( 'defaults.' + type, true );
+        var languages = config.get( 'languages' );
+        var override = languages && languages[ language ] && languages[ language ][ type ];
+        return override !== undefined ? override : isActive;
     }
 
     function isMatch( open, close )
