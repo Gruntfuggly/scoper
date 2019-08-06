@@ -36,6 +36,10 @@ The color of the highlight in the overview ruler.
 *Note: If you want to disable the range highlight or the end marker highlights,
 just set the alpha channel to 0, e.g.* `scoper.endColor: "#00000000"`
 
+`scoper.extendHighlight`
+
+Make the range highlight the full width of the window. Works well with the end highlights, if the range highlight is quite dim.
+
 `scoper.parentheses`
 
 Show scope for parentheses, e.g. `(...)`

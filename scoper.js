@@ -11,7 +11,8 @@ function setRangeStyle()
         },
         dark: {
             backgroundColor: vscode.workspace.getConfiguration( 'scoper' ).highlightColor
-        }
+        },
+        isWholeLine: vscode.workspace.getConfiguration( 'scoper' ).extendHighlight
     } );
 }
 

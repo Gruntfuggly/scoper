@@ -32,6 +32,11 @@
                     "description": "Color for showing current scope in the overview",
                     "default": "#0000aa"
                 },
+                "scoper.extendHighlight": {
+                    "type": "boolean",
+                    "description": "Set to true to extend the highlight range to highlight whole lines. This can be useful when used in conjunction with the end highlights.",
+                    "default": false
+                },
                 "scoper.parentheses": {
                     "type": "boolean",
                     "description": "Show scope for parentheses.",

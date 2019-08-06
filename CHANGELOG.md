@@ -1,3 +1,5 @@
+- Add option to highlight whole lines
+
 # v0.0.9 - 2019-04-29
 - Make configuration more flexible (thanks to [KilliMXI](https://github.com/KillyMXI) for the suggestion).
 
