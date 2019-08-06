@@ -1,3 +1,4 @@
+# v0.0.10 - 2019-08-06
 - Remove highlights when nothing is matched
 - Add option to highlight whole lines
 
