@@ -131,50 +131,42 @@ var Scoper = ( function()
 
     Scoper.prototype.update = function()
     {
+        scoperRangeDecorationType.dispose();
+        scoperEndDecorationType.dispose();
+
+        scoperRangeDecorationType = setRangeStyle();
+        scoperEndDecorationType = setEndStyle();
+
         const editor = vscode.window.activeTextEditor;
 
         if( !editor )
         {
             return;
         }
-        else if( !editor.selection.isEmpty )
-        {
-            editor.setDecorations( scoperRangeDecorationType, [] );
-            return;
-        }
 
         const offset = editor.document.offsetAt( editor.selection.active );
         const text = editor.document.getText();
 
-        try
+        const backwardResult = findBackward( text, offset - 1 );
+        const forwardResult = findForward( text, offset );
+
+        if( util.scoperUtil.isMatch( backwardResult.bracket, forwardResult.bracket ) )
         {
-            const backwardResult = findBackward( text, offset - 1 );
-            const forwardResult = findForward( text, offset );
-
-            if( !util.scoperUtil.isMatch( backwardResult.bracket, forwardResult.bracket ) )
-            {
-                editor.setDecorations( scoperRangeDecorationType, [] );
-                return;
-            }
-
             let start = backwardResult.offset < text.length ? backwardResult.offset + 1 : backwardResult.offset;
             let end = forwardResult.offset;
 
             const start_decoration = new vscode.Range( editor.document.positionAt( start - 1 ), editor.document.positionAt( start ) );
             const range_decoration = new vscode.Range( editor.document.positionAt( start ), editor.document.positionAt( end ) );
             const end_decoration = new vscode.Range( editor.document.positionAt( end ), editor.document.positionAt( end + 1 ) );
+
             var rangeDecorations = [];
+            var endDecorations = [];
+
             rangeDecorations.push( range_decoration );
             editor.setDecorations( scoperRangeDecorationType, rangeDecorations );
-            var endDecorations = [];
             endDecorations.push( start_decoration );
             endDecorations.push( end_decoration );
             editor.setDecorations( scoperEndDecorationType, endDecorations );
-        }
-        catch( error )
-        {
-            editor.setDecorations( scoperRangeDecorationType, [] );
-            editor.setDecorations( scoperEndDecorationType, [] );
         }
     };
 
