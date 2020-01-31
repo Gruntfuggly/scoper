@@ -45,6 +45,7 @@ var Scoper = ( function()
             vscode.window.activeTextEditor.setDecorations( scoperEndDecorationType, [] );
         }
         scoperRangeDecorationType.dispose();
+        scoperEndDecorationType.dispose();
 
         scoperRangeDecorationType = setRangeStyle();
         scoperEndDecorationType = setEndStyle();
