@@ -1,5 +1,7 @@
 # Scope Change Log
 
+## v0.0.11 - 2020-01-31
+
 - Fix removal of brace highlights
 - Remove markdown lint errors in CHANGELOG.md and README.md
 
