@@ -1,5 +1,7 @@
 # Scope Change Log
 
+- Add support for only showing indented scopes
+
 ## v0.0.11 - 2020-01-31
 
 - Fix removal of brace highlights
