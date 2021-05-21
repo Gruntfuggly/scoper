@@ -5,6 +5,7 @@
     "version": "0.0.12",
     "icon": "scoper.png",
     "publisher": "Gruntfuggly",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.5.0"
     },
