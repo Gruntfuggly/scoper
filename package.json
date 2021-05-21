@@ -55,6 +55,11 @@
                 "scoper.languages": {
                     "type": "object",
                     "description": "Language specific enable/disable flags"
+                },
+                "scoper.onlyShowIndentedScopes": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Only show scopes which are indented"
                 }
             }
         }
@@ -65,7 +70,8 @@
     "main": "./extension",
     "__metadata": {
         "id": "1ca6e13c-2a8b-42fc-af5c-8e8db0bb9e58",
+        "publisherId": "d4906d2e-f2ee-492d-9c7c-02b6160599ec",
         "publisherDisplayName": "Gruntfuggly",
-        "publisherId": "d4906d2e-f2ee-492d-9c7c-02b6160599ec"
+        "installedTimestamp": 1621592883953
     }
 }

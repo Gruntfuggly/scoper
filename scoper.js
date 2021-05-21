@@ -156,18 +156,25 @@ var Scoper = ( function()
             let start = backwardResult.offset < text.length ? backwardResult.offset + 1 : backwardResult.offset;
             let end = forwardResult.offset;
 
-            const start_decoration = new vscode.Range( editor.document.positionAt( start - 1 ), editor.document.positionAt( start ) );
-            const range_decoration = new vscode.Range( editor.document.positionAt( start ), editor.document.positionAt( end ) );
-            const end_decoration = new vscode.Range( editor.document.positionAt( end ), editor.document.positionAt( end + 1 ) );
+            var onlyShowIndentedScopes = vscode.workspace.getConfiguration( 'scoper' ).onlyShowIndentedScopes;
 
-            var rangeDecorations = [];
-            var endDecorations = [];
+            var startCharacterOfScope = editor.document.positionAt( start ).character - 1;
 
-            rangeDecorations.push( range_decoration );
-            editor.setDecorations( scoperRangeDecorationType, rangeDecorations );
-            endDecorations.push( start_decoration );
-            endDecorations.push( end_decoration );
-            editor.setDecorations( scoperEndDecorationType, endDecorations );
+            if( onlyShowIndentedScopes !== true || startCharacterOfScope !== 0 )
+            {
+                const start_decoration = new vscode.Range( editor.document.positionAt( start - 1 ), editor.document.positionAt( start ) );
+                const range_decoration = new vscode.Range( editor.document.positionAt( start ), editor.document.positionAt( end ) );
+                const end_decoration = new vscode.Range( editor.document.positionAt( end ), editor.document.positionAt( end + 1 ) );
+
+                var rangeDecorations = [];
+                var endDecorations = [];
+
+                rangeDecorations.push( range_decoration );
+                editor.setDecorations( scoperRangeDecorationType, rangeDecorations );
+                endDecorations.push( start_decoration );
+                endDecorations.push( end_decoration );
+                editor.setDecorations( scoperEndDecorationType, endDecorations );
+            }
         }
     };
 
