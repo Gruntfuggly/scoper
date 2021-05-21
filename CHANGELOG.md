@@ -1,5 +1,7 @@
 # Scope Change Log
 
+## v0.0.13 - 2021-05-21
+
 - Add license
 
 ## v0.0.12 - 2021-05-21
