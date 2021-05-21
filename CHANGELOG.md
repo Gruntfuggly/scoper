@@ -1,5 +1,7 @@
 # Scope Change Log
 
+## v0.0.12 - 2021-05-21
+
 - Add support for only showing indented scopes
 
 ## v0.0.11 - 2020-01-31
